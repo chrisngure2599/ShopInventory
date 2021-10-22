@@ -114,4 +114,20 @@ class SearchController extends Controller
 		
 		return \Response::json($queries);
 	}
+
+	public function search_shop_name(Request $request)
+	{
+		$term = $request['term'];
+		
+		$results = array();
+		
+		$queries = \App\Models\ShopsAndBranches::where('customer_name', 'LIKE', '%'.$term.'%')->take(5)->get();
+
+		foreach ($queries as $key => $value)
+		{
+			$queries[$key]['value'] = $value->customer_name;
+		}
+		
+		return \Response::json($queries);
+	}
 }

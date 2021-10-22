@@ -1021,4 +1021,35 @@ $( document ).ready(function() {
                 }
     });
     
+
+     $( ".search_shop_name" ).autocomplete({
+          source: "/search/search_shop_name",
+          minLength: 1,
+          response: function(event, ui) {
+                if (ui.content.length === 0) {
+
+                    $(this).parent().addClass('has-error');
+                    $(this).next().removeClass('glyphicon-ok').addClass('glyphicon-remove');
+                    $(this).next().show();
+                    $('.form_submit').hide();
+
+                } else {
+                    $(this).next().hide();
+                    $('.form_submit').show();
+                }
+            },
+          select: function(event, ui) {
+
+            $(this).next().next().val(ui.item.id);
+
+            var select = $(this).parent().next().children(':first-child');
+
+            select.empty().append('<option selected="" disabled="" value="">- Select -</option>');
+
+            $.each( ui.item.stocks , function( key, value ) {
+                select.append('<option title="'+value.title+'" purchase_cost="'+value.purchase_cost+'" selling_cost="'+value.selling_cost+'" opening_stock="'+value.opening_stock+'" value='+key+'>'+value.dimention+'</option>');
+            });
+
+          }
+        });
 });

@@ -23,10 +23,10 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $data['total_products'] = \App\Models\StockDetail::count();
-        $data['sales_transactions'] = \App\Models\SalesDetail::count();
-        $data['suppliers'] = \App\Models\SupplierDetail::count();
-        $data['customers'] = \App\Models\CustomerDetail::count();
+        $data['total_products'] =new \App\Models\StockDetail;
+        $data['sales_transactions'] =new  \App\Models\SalesDetail;
+        $data['suppliers'] =new \App\Models\SupplierDetail;
+        $data['customers'] =new \App\Models\CustomerDetail;
 
         return view('home')->with('data',$data);
     }

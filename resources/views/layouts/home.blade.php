@@ -141,6 +141,19 @@
             </ul>
           </li>
 
+          <li class="treeview @if(Request::is('shops/*')) active @endif">
+            <a href="#">
+              <i class="fa fa-shop"></i> <span>Shop & Branches</span>
+              <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+            </a>
+            <ul class="treeview-menu">
+              <li class="@if(Request::is('shops/create')) active @endif"><a href="{{ url('/shops/create') }}"><i class="fa fa-circle-o"></i> Add Shop & Branch</a></li>
+              <li class="@if(Request::is('shops/view')) active @endif"><a href="{{ url('/shops/view') }}"><i class="fa fa-circle-o"></i> View Shops</a></li>
+            </ul>
+          </li>
+
           <li class="treeview @if(Request::is('customer/*')) active @endif">
             <a href="#">
               <i class="fa fa-group"></i> <span>Customers</span>

@@ -44,7 +44,7 @@
           <!-- small box -->
           <div class="small-box bg-green">
             <div class="inner">
-              <h3>{{ $data['sales_transactions'] }}</h3>
+              {{-- <h3>{{ $data['sales_transactions'] }}</h3> --}}0
 
               <p>Sales Transactions</p>
             </div>
@@ -59,7 +59,7 @@
           <!-- small box -->
           <div class="small-box bg-yellow">
             <div class="inner">
-              <h3>{{ $data['suppliers'] }}</h3>
+              {{-- <h3>{{ $data['suppliers'] }}</h3> --}}0
 
               <p>Suppliers</p>
             </div>
@@ -74,7 +74,7 @@
           <!-- small box -->
           <div class="small-box bg-red">
             <div class="inner">
-              <h3>{{ $data['customers'] }}</h3>
+              {{-- <h3>{{ $data['customers'] }}</h3> --}}0
 
               <p>Customers</p>
             </div>
@@ -113,13 +113,6 @@
           <div class="box box-info">
           <div class="box-header with-bstock_category">
             <h3 class="box-title">Stock Availability</h3>
-
-            <div class="box-tools pull-right">
-              <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">
-                <i class="fa fa-minus"></i></button>
-              <button type="button" class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove">
-                <i class="fa fa-times"></i></button>
-            </div>
           </div>
           <div class="box-body">
 

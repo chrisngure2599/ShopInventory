@@ -1,4 +1,4 @@
-<?php
+	<?php
 
 /*
 |--------------------------------------------------------------------------
@@ -121,6 +121,8 @@ Route::group(['prefix' => 'search'], function () {
 
 	Route::any('/purchase_category_name', 'SearchController@purchase_category_name');
 
+	Route::any('/search_shop_name', 'SearchController@search_shop_name');
+
 });
 
 
@@ -132,4 +134,11 @@ Route::group(['prefix' => 'report'], function () {
 
 	Route::any('/pdf_report', 'ReportController@pdf_report');
 
+});
+
+Route::group(['prefix'=>'shops'],function(){
+	Route::get('/index','ShopAndBranchesController@index');
+	Route::get('/view', 'ShopAndBranchesController@view');
+	Route::get('/create','ShopAndBranchesController@create');
+	Route::post('/store','ShopAndBranchesController@store');
 });
