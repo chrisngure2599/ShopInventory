@@ -119,6 +119,8 @@ Route::group(['prefix' => 'search'], function () {
 
 	Route::any('/category_name', 'SearchController@category_name');
 
+	// Route::any('/st', 'SearchController@st');
+
 	Route::any('/purchase_category_name', 'SearchController@purchase_category_name');
 
 	Route::any('/search_shop_name', 'SearchController@search_shop_name');

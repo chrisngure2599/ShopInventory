@@ -100,9 +100,9 @@ class PurchaseController extends Controller
             $purchase_product[$key]['purchase_quantity'] = $data['purchase_quantity'][$key];
             $purchase_product[$key]['sub_total'] = $data['sub_total'][$key];
         }
-
-        $SalesProduct = \App\Models\PurchaseProductList::insert($purchase_product);
-
+        $SalesProduct = new \App\Models\PurchaseProductList;
+        // dd($purchase_product[0]);
+        $SalesProduct=$SalesProduct->create($purchase_product[0]);
         foreach ($purchase_product as $key => $value) {
          
          \App\Models\StockDetail::where('stock_id',$value['stock_id'])->update(['stock_quantity'=>$value['closing_stock']]);   
@@ -126,7 +126,7 @@ class PurchaseController extends Controller
                                     'mode'=>$PurchaseDetail->mode,
                                 ];                               
 
-        \App\Models\Transaction::create($transaction_details);                                     
+        \App\Models\Transaction::create($transaction_details);
 
             $messageType = 1;
             $message = "Purchase created successfully !";

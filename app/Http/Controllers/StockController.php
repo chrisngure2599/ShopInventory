@@ -96,50 +96,22 @@ class StockController extends Controller
      */
     public function store(Request $request)
     {
-
-      $measure_id = $request['measure_id'];
-      $uom_id = $request['uom_id'];
       $stock_value = $request['value'];
-
-      $symbol = \App\Models\UnitOfMeasuresMaster::whereIn('uom_id',$uom_id)->pluck('symbol');
-
-      foreach ($request['value'] as $rkey => $rval) {
-        
-        if(isset($request['stock_name'])){
-          $request['stock_name'] = $request['stock_name'].' x '.$rval.$symbol[$rkey];  
-        }else{
-          $request['stock_name'] = $rval.$symbol[$rkey];  
-        }
-
-      }
-
-      $stock_units = array();
-
-      unset($request['measure_id'],$request['uom_id'],$request['value']);
-
         try {
-            
-            
-            $stock = \App\Models\StockDetail::create($request->all());
-
-            // \App\Models\StockAvail::create(['stock_id'=>$stock->stock_id,'stock_name'=>$stock->stock_name]);
-
-            foreach ($measure_id as $key => $value) {
-
-              $stock_units[$key]['stock_id'] = $stock->stock_id;
-              $stock_units[$key]['category_id'] = $stock->category_id;
-              $stock_units[$key]['measure_id'] = $value;
-              $stock_units[$key]['uom_id'] = $uom_id[$key];
-              $stock_units[$key]['value'] = $stock_value[$key];
-              $stock_units[$key]['created_at'] = \Carbon\Carbon::now();
+            $curr_stock=\App\Models\StockDetail::where(['category_id'=>$request->category_id,'stock_name'=>$request->stock_name])->first();
+            if ($curr_stock) {
+                $messageType = 2;
+            $message = "Duplicate Entry for $request->stock_name !";
+            }else{
+                $requests=$request->all();
+                $requests['category_name']=$request['category_name'];
+                $requests['stock_name']=$request['stock_name'];
+                $stock = \App\Models\StockDetail::create($requests);
+                $messageType = 1;
+                $message = "Stock created successfully !";
 
             }
-
-            $stock_units_detail = \App\Models\StockUnitsDetail::insert($stock_units);
-
-            $messageType = 1;
-            $message = "Stock created successfully !";
-
+            
         } catch(\Illuminate\Database\QueryException $ex){  
             $messageType = 2;
             $message = "Stock creation failed !";            

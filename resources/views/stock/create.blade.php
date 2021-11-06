@@ -30,22 +30,28 @@
 
                       <div class="row">
                         
-                        <div class="col-sm-12">
+                        <div class="col-sm-6">
                           <div class="form-group">
                             <label>Stock Category</label>
-                            <input type="text" class="form-control search_category_name" placeholder="Type here ..." name="category_name" autocomplete="off">
+                            <input type="text" class="form-control search_category_name" placeholder="Books" name="category_name" autocomplete="off">
                             <span class="help-block search_category_name_empty" style="display: none;">No Results Found ...</span>
                             <input type="hidden" class="search_category_id" name="category_id">
                           </div>
                         </div>
 
+
+                        <div class="col-sm-6">
+                          <div class="form-group">
+                            <label>Stock / Product Name</label>
+                            <input type="text" class="form-control search_stock_name" placeholder="Counter Books" name="stock_name" autocomplete="off" id="stock_name" disabled>
+                            <span id="stock_name_error" class="text-danger" hidden>Error duplicate name</span>
+                          </div>
+                        </div>
+
                       </div> 
 
-                      <div class="row unit_of_measure_container"></div>
 
                       <div class="row">
-                        
-                        <input type="hidden" class="measuring_units" name="measuring_units">
 
                         <div class="col-sm-6">
                           <div class="form-group">
@@ -91,7 +97,7 @@
 
                     <div class="box-footer">
                       <button type="reset" class="btn btn-danger pull-left">Reset</button>
-                      <button type="submit" class="btn btn-primary pull-right"><i class="fa fa-plus"></i> Add</button>
+                      <button type="submit" class="btn btn-primary pull-right form_submit"><i class="fa fa-plus"></i> Add</button>
                     </div>
             </form>
           </div>

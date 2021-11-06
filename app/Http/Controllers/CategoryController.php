@@ -90,16 +90,6 @@ class CategoryController extends Controller
             
             $category =\App\Models\CategoryDetail::create( ['category_name' => $request['category_name']] );
 
-            foreach ($request['measure_id'] as $key => $value) {
-                $data[$key]['category_id'] = $category->id;
-                $data[$key]['measure_id'] = $value;
-                $data[$key]['uom_id'] = $request['uom_id_'.$value];
-                $data[$key]['created_at'] = \Carbon\Carbon::now();
-
-            }
-
-            \App\Models\CategoryUnitsMaster::insert($data);
-
             $messageType = 1;
             $message = "Category created successfully !";
 
@@ -132,13 +122,7 @@ class CategoryController extends Controller
     {
         $category = \App\Models\CategoryDetail::where('id',$id)->with('units')->get();
 
-        $measure_id = \App\Models\CategoryUnitsMaster::where('category_id',$id)->pluck('measure_id')->toarray();
-        
-        $uom_id = \App\Models\CategoryUnitsMaster::where('category_id',$id)->pluck('uom_id')->toarray();
-
-        $details = \App\Models\MeasuresMaster::with('unit')->get();
-
-        return view('category.edit')->with('category',$category)->with('details',$details)->with('measures_array',$measure_id)->with('uom_array',$uom_id);
+        return view('category.edit')->with('category',$category);
     }
 
     /**
@@ -155,18 +139,6 @@ class CategoryController extends Controller
             $category = \App\Models\CategoryDetail::find($id);
 
             $category->update(['category_name' => $request['category_name']]);
-
-            foreach ($request['measure_id'] as $key => $value) {
-                $data[$key]['category_id'] = $category->id;
-                $data[$key]['measure_id'] = $value;
-                $data[$key]['uom_id'] = $request['uom_id_'.$value];
-                $data[$key]['created_at'] = \Carbon\Carbon::now();
-
-            }
-
-            \App\Models\CategoryUnitsMaster::where('category_id',$id)->delete();
-
-            \App\Models\CategoryUnitsMaster::insert($data);
 
             $messageType = 1;
             $message = "Category ".$category->category_name." details updated successfully !";

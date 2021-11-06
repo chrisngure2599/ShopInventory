@@ -20,12 +20,12 @@ class CreatePurchaseProductListTable extends Migration
             $table->string('category_name',32);
             $table->integer('category_id');
             $table->integer('stock_id');
-            $table->float('purchase_cost',10,2)->unsigned()->nullable();
-            $table->float('selling_cost',10,2)->unsigned()->nullable();
+            $table->float('purchase_cost',99,2)->unsigned()->nullable();
+            $table->float('selling_cost',99,2)->unsigned()->nullable();
             $table->integer('opening_stock')->unsigned();
             $table->integer('closing_stock')->unsigned();
             $table->integer('purchase_quantity')->unsigned();
-            $table->float('sub_total',10,2)->unsigned()->nullable();
+            $table->float('sub_total',99,2)->unsigned()->nullable();
             $table->timestamps();
             $table->softDeletes();
 

@@ -33,7 +33,7 @@ $( document ).ready(function() {
             select.empty().append('<option selected="" disabled="" value="">- Select -</option>');
 
             $.each( ui.item.stocks , function( key, value ) {
-                select.append('<option title="'+value.title+'" purchase_cost="'+value.purchase_cost+'" selling_cost="'+value.selling_cost+'" opening_stock="'+value.opening_stock+'" value='+key+'>'+value.dimention+'</option>');
+                select.append('<option title="'+value.title+'" purchase_cost="'+value.purchase_cost+'" selling_cost="'+value.selling_cost+'" opening_stock="'+value.opening_stock+'" value='+key+'>'+value.title+'</option>');
             });
 
           }
@@ -71,7 +71,7 @@ $( document ).ready(function() {
             select.empty().append('<option selected="" disabled="" value="">- Select -</option>');
 
             $.each( ui.item.stocks , function( key, value ) {
-                select.append('<option title="'+value.title+'" purchase_cost="'+value.purchase_cost+'" selling_cost="'+value.selling_cost+'" opening_stock="'+value.opening_stock+'" value='+key+'>'+value.dimention+'</option>');
+                select.append('<option title="'+value.title+'" purchase_cost="'+value.purchase_cost+'" selling_cost="'+value.selling_cost+'" opening_stock="'+value.opening_stock+'" value='+key+'>'+value.title+'</option>');
             });
 
           }
@@ -102,7 +102,7 @@ $( document ).ready(function() {
     });
 
     $(document).on('change','.purchase_stock_id',function(){
-
+        
         var purchase_cost = $(this).find(':selected').attr('purchase_cost');
         var opening_stock = $(this).find(':selected').attr('opening_stock');
 
@@ -110,11 +110,17 @@ $( document ).ready(function() {
 
         $(this).parent().next().children(':first-child').val(opening_stock);
 
+        var quantity = parseInt($(this).parent().next().children().first().next().next().val()).toFixed(2);
+        var total = parseFloat(quantity*purchase_cost || 0).toFixed(2);
+
+        $(this).parent().next().next().next().children().first().val(total);
+
+
         $(this).parent().next().next().children(':first-child').val(purchase_cost);
 
         $(this).parent().next().next().next().find(':nth-child(1)').val();
 
-        calculate_purchase();
+        // calculate_purchase();
 
     });
 
@@ -324,7 +330,7 @@ $( document ).ready(function() {
 
         var tax = parseFloat( $('.purchase_tax_amount').val() ).toFixed(2);
 
-        var grand = (parseFloat(total-discount) + parseFloat(tax)).toFixed(2);
+        var grand = (parseFloat(total)).toFixed(2);
 
         $('.grand_total').val( grand || '');
 
@@ -409,37 +415,24 @@ $( document ).ready(function() {
       source: "/search/category_name",
       minLength: 1,
       response: function(event, ui) {
+            $("#stock_name").attr('disabled',true);
             if (ui.content.length === 0) {
 
                 $(this).parent().addClass('has-error');
                 $(this).next().removeClass('glyphicon-ok').addClass('glyphicon-remove');
                 $(".search_category_name_empty").show();
+                
                 $('.form_submit').hide();
 
             } else {
                 $(".search_category_name_empty").hide();
+                
                 $('.form_submit').show();
             }
         },
       select: function(event, ui) {
-
+        $("#stock_name").attr('disabled',false);
         $('.search_category_id').val(ui.item.id);
-
-        $('.unit_of_measure_container').empty();
-
-        $('.measuring_units').val('');
-
-        $.each( ui.item.units , function( key, value ) {
-
-            if($('.measuring_units').val() == ''){
-                $('.measuring_units').val(value.measures.name);
-            }else{
-                $('.measuring_units').val($('.measuring_units').val()+ ' x ' +value.measures.name);    
-            }
-            
-
-            $('.unit_of_measure_container').append('<div class="col-sm-6"><div class="form-group"><label>'+value.measures.name+' ( in '+value.uom.name+' )</label><input type="hidden" name="measure_id[]" value='+value.measures.measure_id+'><input type="hidden" name="uom_id[]" value='+value.uom.uom_id+'> <input type="number" min="0" class="form-control" name="value[]" autocomplete="off"> </div></div>');
-        });
 
       }
     });
@@ -473,7 +466,7 @@ $( document ).ready(function() {
         $('.stock_id,.purchase_stock_id').empty().append('<option selected="" disabled="" value="">- Select -</option>');
 
         $.each( ui.item.stocks , function( key, value ) {
-            $('.stock_id,.purchase_stock_id').append('<option title="'+value.title+'" purchase_cost="'+value.purchase_cost+'" selling_cost="'+value.selling_cost+'" opening_stock="'+value.opening_stock+'" value='+key+'>'+value.dimention+'</option>');
+            $('.stock_id,.purchase_stock_id').append('<option title="'+value.title+'" purchase_cost="'+value.purchase_cost+'" selling_cost="'+value.selling_cost+'" opening_stock="'+value.opening_stock+'" value='+key+'>'+value.title+'</option>');
             $('.stock_id_details').empty().html('( '+value.title+' )');
         });
 
@@ -1052,4 +1045,23 @@ $( document ).ready(function() {
 
           }
         });
+     $(".search_stock_name" ).autocomplete({
+      source: "/search/stock_name",
+      minLength: 1,
+      response: function(event, ui) {
+            if (ui.content.length === 0) {
+                $(".search_stock_name_empty").hide();
+                $('.form_submit').show();
+                $("#stock_name_error").hide();
+
+            } else {
+                $(this).parent().addClass('has-error');
+                $(".search_stock_name_empty").show();
+                $(this).next().removeClass('glyphicon-ok').addClass('glyphicon-remove');
+                $('.form_submit').hide();
+                $("#stock_name_error").show();
+                
+            }
+        }
+    });
 });

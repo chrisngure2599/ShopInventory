@@ -43,7 +43,7 @@
                         
                         <div class="col-sm-12">
                           
-                          <div class="panel panel-primary">
+                          {{-- <div class="panel panel-primary">
                             <div class="panel-heading">Measures & Units</div>
                               <div class="panel-body">
                                 <div class="form-group">
@@ -63,7 +63,7 @@
                                   @endforeach
                                 </div>
                               </div>
-                          </div>
+                          </div> --}}
 
                         </div>
 

@@ -20,39 +20,8 @@
 
   }
 
-  function measuresFormatter(value, row, index) {
 
-    var data = null;
 
-    $.each( row['units'], function( index, value ){
-      if(data == null){
-        data = value.measures.name;
-      }else{
-        data += " x " + value.measures.name;
-      }
-    });
-      
-      
-      return data;
-
-  }
-
-  function unitFormatter(value, row, index) {
-
-    var data = null;
-
-    $.each( row['units'], function( index, value ){
-      if(data == null){
-        data = value.uom.name;
-      }else{
-        data += " x " + value.uom.name;
-      }
-    });
-      
-      
-      return data;
-
-  }
 
 </script>
 
@@ -104,10 +73,6 @@
                             <tr>
                                 <th data-field="id" data-align="center" data-sortable="true">Category ID</th>
                                 <th data-field="category_name" data-align="center" data-sortable="true">Category Name</th>
-                                
-                                <th data-align="center" data-formatter="measuresFormatter"> Measures </th>
-
-                                <th data-align="center" data-formatter="unitFormatter"> Unit </th>
 
                                 <th data-align="center" data-formatter="actionFormatter" data-events="actionEvents"> Action </th>
                             </tr>

@@ -39,38 +39,6 @@
 
                       </div>
 
-                      <div class="row">
-                        
-                        <div class="col-sm-12">
-                          
-                          <div class="panel panel-primary">
-                            <div class="panel-heading">Measures & Units</div>
-                              <div class="panel-body">
-                                <div class="form-group">
-                                  @foreach($details as $key => $val)
-
-                                      <input type="checkbox" class="measures_check" name="measure_id[]" value="{{ $val->measure_id }}" required="" @if( in_array($val->measure_id, $measures_array) ) checked="" @endif> {{ $val->name }} <br></input>
-
-                                      <div class="form-group measure_id_{{ $val->measure_id }}" @if( !in_array($val->measure_id, $measures_array) ) hidden="" @endif><br>
-                                        @foreach($val->unit as $key1 => $val1)
-                                          @if ($loop->first)
-                                              &nbsp;&nbsp;&nbsp;&nbsp;
-                                          @endif
-                                          <input type="radio" class="measure_unit_{{ $val->measure_id }}" name="uom_id_{{ $val->measure_id }}" @if( !in_array($val->measure_id, $measures_array) ) disabled @endif required="" value="{{ $val1->uom_id }}" @if( in_array($val1->uom_id, $uom_array) ) checked="" @endif><span>&nbsp;{{ $val1->name }} &nbsp;&nbsp;</span></input>
-                                          @if ($loop->last)
-                                              <br><br>
-                                          @endif
-                                        @endforeach
-                                      </div>
-                                  @endforeach
-                                </div>
-                              </div>
-                          </div>
-
-                        </div>
-
-                      </div>
-
                     </div>
                     <!-- /.box-body -->
 

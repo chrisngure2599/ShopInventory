@@ -42,14 +42,15 @@
                             <div class="col-sm-3">
                               <div class="form-group">
                                 <label>Address</label><br>
-                                <input type="text" class="form-control search_supplier_address" name="supplier_address" autocomplete="off">
+                                <input type="text" class="form-control search_supplier_address"  autocomplete="off" disabled>
+                                <input type="hidden" class="form-control search_supplier_address" name="supplier_address" autocomplete="off" >
                               </div>
                             </div>
 
                             <div class="col-sm-2">
                               <div class="form-group">
                                 <label>Contact</label><br>
-                                <input type="text" class="form-control search_supplier_contact1" name="supplier_contact1" autocomplete="off">
+                                <input type="text" class="form-control search_supplier_contact1" name="supplier_contact1" autocomplete="off" disabled="">
                               </div>
                             </div>
 
@@ -115,7 +116,7 @@
                                     <input type="text" class="form-control stock_total" name="sub_total[]"  readonly="">
                                   </td>
 
-                                  <td><button type="button" class="btn btn-danger remove_tr">&times;</button></td>
+                                  <td></td>
                                 </tr>
                               </tbody>
                               <tfoot>
@@ -182,7 +183,7 @@
 
                             </div>
 
-                            <div class="row">
+                            {{-- <div class="row">
                               <div class="col-md-offset-4 col-md-4">
                                 <div class="form-group">
                                   <label>Discount ( % )</label><br>
@@ -195,9 +196,9 @@
                                   <input type="text" class="form-control purchase_discount_amount" name="discount_amount" step="0.01" min="0" value="0">
                                 </div>
                               </div>
-                            </div>
+                            </div> --}}
 
-                            <div class="row">
+                            {{-- <div class="row">
 
                               <div class="col-md-4">
                                 <div class="form-group">
@@ -218,7 +219,7 @@
                                   <input type="text" class="form-control purchase_tax_amount" name="tax_amount"   step="0.01" min="0" value="0">
                                 </div>
                               </div>
-                            </div>
+                            </div> --}}
 
                           </div>
                       </div>

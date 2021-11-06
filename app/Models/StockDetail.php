@@ -22,6 +22,7 @@ class StockDetail extends Model
         'stock_name',
         'category_id',
         'category_name',
+        'stock_name',
         'purchase_cost',
         'selling_cost',
         'supplier_id',

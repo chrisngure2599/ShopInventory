@@ -22,6 +22,8 @@ class PurchaseProductList extends Model
 	    'category_id',
 	    'category_name',
 	    'purchase_cost',
+        'purchase_id',
+        'purchase_quantity',
 	    'selling_cost',
 	    'opening_stock',
 	    'closing_stock',
