@@ -142,45 +142,6 @@
                               </div>
                             </div>
 
-                            <div class="row">
-                              <div class="col-md-offset-4 col-md-4">
-                                <div class="form-group">
-                                  <label>Discount ( % )</label><br>
-                                  <input type="number" class="form-control sales_discount_percent" name="discount_percent" step="0.01" min="0" max="100" value="0">
-                                </div>
-                              </div>
-                              <div class="col-md-4">
-                                <div class="form-group">
-                                  <label>Discount ( Amount )</label><br>
-                                  <input type="text" class="form-control sales_discount_amount" name="discount_amount" step="0.01" min="0" value="0">
-                                </div>
-                              </div>
-                            </div>
-
-                            <div class="row">
-
-                              <div class="col-md-4">
-                                <div class="form-group">
-                                  <label>Tax Description</label><br>
-                                  <input type="text" class="form-control" name="tax_description">
-                                </div>
-                              </div>
-
-                              <div class="col-md-4">
-                                <div class="form-group">
-                                  <label>Tax ( % )</label><br>
-                                  <input type="number" class="form-control sales_tax_percent" name="tax_percent"  step="0.01" min="0" max="100" value="0">
-                                </div>
-                              </div>
-                              <div class="col-md-4">
-                                <div class="form-group">
-                                  <label>Tax ( Amount )</label><br>
-                                  <input type="text" class="form-control sales_tax_amount" name="tax_amount"   step="0.01" min="0" value="0">
-                                </div>
-                              </div>
-                            </div>
-
-                          </div>
                       </div>
 
                       <div class="box box-default">
