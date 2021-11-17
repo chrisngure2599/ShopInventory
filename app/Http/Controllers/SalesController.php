@@ -80,6 +80,7 @@ class SalesController extends Controller
      */
     public function store(Request $request)
     {
+        // return $request->all();
         $data = $request->all();
 
         $sales_product = array();
@@ -102,18 +103,17 @@ class SalesController extends Controller
             $sales_product[$key]['sub_total'] = $data['sub_total'][$key];
         }
 
-        $SalesProduct = \App\Models\SalesProductList::insert($sales_product);
 
         foreach ($sales_product as $key => $value) {
          
+        $SalesProduct = \App\Models\SalesProductList::create($value);
          \App\Models\StockDetail::where('stock_id',$value['stock_id'])->update(['stock_quantity'=>$value['closing_stock']]);   
         }
-
-        $CustomerDetail = \App\Models\CustomerDetail::where('id',$request['customer_id'])
-                                  ->update([
-                                        'balance'=>$request['closing_balance'],
-                                        'due'=>$request['closing_due']
-                                    ]);
+        // $CustomerDetail = \App\Models\CustomerDetail::where('id',$request['customer_id'])
+        //                           ->update([
+        //                                 'balance'=>$request['closing_balance'],
+        //                                 'due'=>$request['closing_due']
+        //                             ]);
         
         $transaction_details = [
                                     'type' => 2,
@@ -127,7 +127,7 @@ class SalesController extends Controller
                                     'mode'=>$SalesDetail->mode,
                                 ];                                  
 
-        \App\Models\Transaction::create($transaction_details);                                      
+        // \App\Models\Transaction::create($transaction_details);                                      
 
             $messageType = 1;
             $message = "Sales created successfully !";

@@ -5,7 +5,7 @@ $( document ).ready(function() {
     });
 
     $(document).on('click', '.add_sales_product', function(){
-
+        console 
         $('.sales_container').append('<tr><td><input type="text" class="form-control search_purchase_category_name" placeholder="Type here ..." name="category_name[]" autocomplete="off"><span class="help-block search_purchase_category_name_empty glyphicon" style="display: none;"> No Results Found </span><input type="hidden" class="search_category_id" name="category_id[]"></td><td width="250px"><select class="form-control stock_id" name="stock_id[]"><option selected="" disabled="" value="">select</option></select><span class="search_stock_quantity"></span></td><td width="200px"><input type="text" class="form-control search_purchase_cost" name="purchase_cost[]" readonly=""></td><td width="150px"><input type="text" class="form-control search_selling_cost" name="selling_cost[]" ></td><td width="50px"><input type="hidden" class="search_stock_quantity" name="opening_stock[]"><input type="hidden" name="closing_stock[]" class="closing_stock"><input type="number" class="form-control change_sales_quantity" name="sales_quantity[]" min="1"><small class="help-block max_stock" style="display: none;">Insufficient Stock</small></td><td width="100px"><input type="text" class="form-control stock_total" name="sub_total[]" readonly=""></td><td><button type="button" class="btn btn-danger remove_tr">&times;</button></td></tr>');
 
         $( ".search_purchase_category_name" ).autocomplete({
@@ -254,7 +254,7 @@ $( document ).ready(function() {
 
         var tax = parseFloat( $('.sales_tax_amount').val() ).toFixed(2);
 
-        var grand = (parseFloat(total-discount) + parseFloat(tax)).toFixed(2);
+        var grand = (parseFloat(total)).toFixed(2);
 
         $('.grand_total').val( grand || '');
 
