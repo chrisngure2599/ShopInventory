@@ -10,7 +10,7 @@
 
 <div class="login-box">
   <div class="login-logo">
-    <a href="/">MyStocks</a>
+    <a href="/">ShopInventory</a>
   </div>
   <!-- /.login-logo -->
   <div class="login-box-body">
