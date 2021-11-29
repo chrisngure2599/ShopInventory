@@ -252,7 +252,7 @@
                             <div class="col-sm-2">
                               <div class="form-group">
                                 <label>Closing Balance</label><br>
-                                <input type="text" class="form-control closing_balance" name="closing_balance" readonly="">
+                                <input type="text" class="form-control closing_balance" name="closing_balance" readonly="" value="0">
                               </div>
                             </div>
 

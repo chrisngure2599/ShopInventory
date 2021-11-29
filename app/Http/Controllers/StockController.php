@@ -85,6 +85,7 @@ class StockController extends Controller
 
         $supplier_details = \App\Models\SupplierDetail::pluck('supplier_name','id');
 
+
         return view('stock.create')->with('category_details',$category_details)->with('supplier_details',$supplier_details);
     }
 
@@ -107,6 +108,13 @@ class StockController extends Controller
                 $requests['category_name']=$request['category_name'];
                 $requests['stock_name']=$request['stock_name'];
                 $stock = \App\Models\StockDetail::create($requests);
+                $stock_units['stock_id'] = $stock->stock_id;
+                $stock_units['category_id'] = $stock->category_id;
+                $stock_units['measure_id'] = 1;
+                $stock_units['uom_id'] = 1;
+                $stock_units['value'] = $stock->selling_cost;
+                \App\Models\StockUnitsDetail::create($stock_units);
+                $stock_units['created_at'] = \Carbon\Carbon::now();
                 $messageType = 1;
                 $message = "Stock created successfully !";
 
